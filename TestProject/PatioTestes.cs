@@ -16,13 +16,21 @@ namespace TestProject
         public void ValidaFaturamento()
         {
             //Arrange
-            var estacionemento = new Patio();
+            var estacionamento = new Patio();
             var veiculo = new Veiculo();
             veiculo.Proprietario = "Pedrinho Matador";
             veiculo.Tipo = TipoVeiculo.Automovel;
             veiculo.Cor = "Verde";
             veiculo.Modelo = "Fusca";
             veiculo.Placa = "asd-0000";
+
+            estacionamento.RegistrarEntradaVeiculo(veiculo);
+            estacionamento.RegistrarSaidaVeiculo(veiculo.Placa);
+            //Act
+            double faturamento = estacionamento.TotalFaturado();
+
+            //Assert
+            Assert.Equal(2, faturamento);
         }
     }
 }
